@@ -1,10 +1,13 @@
 .container {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: space-around;
   align-items: center;
+}
+
+.screen {
   height: 100vh;
-  background-color: #002E23;
+  background-color: #002e23;
 }
 
 .board {
@@ -21,7 +24,148 @@
   height: 60px;
   background-color: whitesmoke;
   margin: 5px;
-  transition: all .2s;
+  transition: all 0.2s;
   border-radius: 0;
-  clip-path: polygon(36% 0, 0 0, 0 29%, 0 57%, 0 100%, 30% 100%, 73% 100%, 100% 100%, 100% 59%, 100% 31%, 100% 0, 74% 0);
+  clip-path: polygon(
+    36% 0,
+    0 0,
+    0 29%,
+    0 57%,
+    0 100%,
+    30% 100%,
+    73% 100%,
+    100% 100%,
+    100% 59%,
+    100% 31%,
+    100% 0,
+    74% 0
+  );
+}
+
+.square--1 {
+  background-color: darkkhaki;
+  clip-path: polygon(
+    80% 20%,
+    71% 33%,
+    50% 22%,
+    34% 33%,
+    79% 57%,
+    79% 79%,
+    50% 95%,
+    16% 80%,
+    25% 65%,
+    49% 77%,
+    62% 68%,
+    18% 45%,
+    18% 24%,
+    48% 4%
+  );
+}
+
+.square--2 {
+  background-color: darkred;
+  /* border-radius: 50%; */
+  clip-path: polygon(
+    50% 0%,
+    83% 12%,
+    100% 43%,
+    94% 78%,
+    68% 100%,
+    32% 100%,
+    6% 78%,
+    0% 43%,
+    17% 12%
+  );
+}
+
+.square--1.winner {
+  animation: point-animation-1 infinite 0.5s ease-in-out;
+}
+
+.score-board {
+  width: 820px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  margin-top: 5px;
+}
+
+.score-board div {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  font-size: 2em;
+  padding: 5px;
+  font-weight: bold;
+  background-color: darkkhaki;
+}
+
+.score-board div:first-child {
+  background-color: darkred;
+}
+
+.player-turn {
+  color: white;
+}
+
+#panel-score {
+  display: flex;
+  justify-content: center;
+  margin-top: 2vh;
+}
+
+.turnBtn {
+  background-color: #4CAF50; 
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  -webkit-transition-duration: 0.4s; 
+  transition-duration: 0.4s;
+  cursor: pointer;
+  font-size: larger;
+}
+
+.turnBtn:hover {
+  background-color: darkgreen;
+  color: white;
+}
+
+#reset-btn {
+    background-color: #4CAF50; 
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+#reset-btn:active {
+  background-color: darkgreen;
+}
+
+.board {
+  margin-left: 10vh;
+}
+
+@keyframes point-animation-1 {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }

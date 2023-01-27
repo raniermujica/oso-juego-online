@@ -1,12 +1,18 @@
 import Square from "./Square";
+import React from 'react';
 import "../App.css"
 
-function Board({squares}) {
+
+function Board({squares, onClick, turn, pointPositions}) {
 
   const createSquares = values => (
       values.map(value => (
-          <Square value={squares[value]}
-          key={`square_${value}`}
+          <Square 
+          winner={pointPositions.includes(value)}
+          turn={turn}
+          onClick={() => onClick(value)}
+          value={squares[value]}
+          key={`squares_${value}`}
           />
       ))
   )
@@ -40,10 +46,7 @@ function Board({squares}) {
   <div className="row">
   {createSquares([72,73,74,75,76,77,78,79,80])}
   </div>
-  
-  
       </div>
-  
   );
   }
   
