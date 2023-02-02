@@ -3,12 +3,14 @@ import React from 'react';
 import "../App.css"
 
 
-function Board({squares, onClick, turn, pointPositions}) {
+function Board({squares, onClick, turn, pointPositions, playerTurn}) {
 
   const createSquares = values => (
       values.map(value => (
           <Square 
           winner={pointPositions.includes(value)}
+          playerPoint={playerTurn.includes(pointPositions)}
+          playerTurn={playerTurn}
           turn={turn}
           onClick={() => onClick(value)}
           value={squares[value]}

@@ -7,7 +7,8 @@
 
 .screen {
   height: 100vh;
-  background-color: #002e23;
+  /* background-color: #002e23; */
+  background-color: #000D10;
 }
 
 .board {
@@ -42,7 +43,7 @@
   );
 }
 
-.square--1 {
+.square--S {
   background-color: darkkhaki;
   clip-path: polygon(
     80% 20%,
@@ -62,8 +63,8 @@
   );
 }
 
-.square--2 {
-  background-color: darkred;
+.square--O {
+  background-color:  darkkhaki;
   /* border-radius: 50%; */
   clip-path: polygon(
     50% 0%,
@@ -78,8 +79,14 @@
   );
 }
 
-.square--1.winner {
-  animation: point-animation-1 infinite 0.5s ease-in-out;
+.square--S.winner {
+  /* animation: point-animation-1 infinite 0.5s ease-in-out; */
+  background-color:  #063B1D;
+}
+
+.square--O.winner {
+  /* animation: point-animation-1 infinite 0.5s ease-in-out; */
+  background-color:  darkred;
 }
 
 .score-board {
@@ -101,7 +108,7 @@
   font-size: 2em;
   padding: 5px;
   font-weight: bold;
-  background-color: darkkhaki;
+  background-color: #063B1D;
 }
 
 .score-board div:first-child {
@@ -116,10 +123,11 @@
   display: flex;
   justify-content: center;
   margin-top: 2vh;
+  margin-left: 4vh;
 }
 
 .turnBtn {
-  background-color: #4CAF50; 
+  background-color: darkkhaki; 
   border: none;
   color: white;
   padding: 16px 32px;
@@ -135,12 +143,12 @@
 }
 
 .turnBtn:hover {
-  background-color: darkgreen;
+  background-color: #C48F40;
   color: white;
 }
 
 #reset-btn {
-    background-color: #4CAF50; 
+    background-color: darkkhaki; 
     border: none;
     color: white;
     padding: 15px 32px;
@@ -154,12 +162,29 @@
 }
 
 #reset-btn:active {
-  background-color: darkgreen;
+  background-color: #C48F40;
 }
 
 .board {
   margin-left: 10vh;
 }
+
+.player--1 {
+  color: darkred;
+}
+
+.player--2 {
+  color: #063B1D;
+}
+
+#left-screen {
+ margin-top: -40vh;
+ margin-left: -7vh;
+}
+
+#left-screen header {
+  padding-top: 5vh;
+ }
 
 @keyframes point-animation-1 {
   from {

@@ -7,6 +7,7 @@ import winningPositions from "./utils/winningCode";
 import ResetBtn from "./components/ResetBtn";
 import PanelScore from "./components/PanelScore";
 import PlayerTurn from "./components/PlayerTurn";
+import osoLogo from "./assets/oso-logo.png";
 
 function App() {
   const [turn, setTurn] = useState("");
@@ -18,62 +19,60 @@ function App() {
     2: 0,
   });
 
-  const checkWinner = newSquares => {
+  const checkWinner = (newSquares) => {
     for (let i = 0; i < winningPositions.length; i++) {
       const [a, b, c] = winningPositions[i];
       if (
         newSquares[a] &&
         newSquares[a] !== newSquares[b] &&
+        newSquares[b] !== null &&
+        newSquares[b] === "S" &&
         newSquares[a] === newSquares[c]
       ) {
-        // addPoint(newSquares[a], winningPositions[i]);
-        setScore({
-          ...score,
-          score: score + 1,
-        });
-        return;
+        addPoint(playerTurn, winningPositions[i]);
       }
     }
-    if (!newSquares.includes(null)) {
-      // endGame(null, Array.from(Array(81).keys()));
-      return;
-    }
-    setTurn(turn === "1" ? "2" : "1");
+    setPlayerTurn(playerTurn === "1" ? "1" : "2");
   };
 
   const handleClick = (square) => {
     let newSquares = [...squares];
-    newSquares.splice(square, 1, turn);
+    if (turn === "S" || turn === "O") {
+      newSquares.splice(square, 1, turn);
+    }
     setSquares(newSquares);
     checkWinner(newSquares);
+    setTurn("");
+    if (turn === "S" || turn === "O") {
+      setPlayerTurn(playerTurn === "1" ? "2" : "1");
+    }
   };
 
   const handleBtnS = () => {
-    setTurn("1");
+    setTurn("S");
   };
 
   const handleBtnO = () => {
-    setTurn("2");
+    setTurn("O");
   };
 
   const resetGame = () => {
     setTurn("");
     setSquares(Array(81).fill(null));
     setPointPositions([]);
+    setPlayerTurn("1");
     setScore({
-      1:0, 
-      2:0
+      1: 0,
+      2: 0,
     });
   };
 
-  const addPoint = (result, winningPositions) => {
-    // setTurn(turn === "1" ? "1" : "2")
-    if (result !== null) {
-      setScore({
-        ...score,
-        [result]: score[result] + 1,
-      });
-    }
+  const addPoint = (playerTurn, winningPositions) => {
+    setScore({
+      ...score,
+      [playerTurn]: score[playerTurn] + 1,
+    });
+
     setPointPositions(winningPositions);
   };
 
@@ -81,12 +80,16 @@ function App() {
     <div className="screen">
       <br />
       <div className="container">
+      <div id="left-screen">
+        {<img src={osoLogo} alt="logo" width={170} />}
         <header>
-          <PlayerTurn />
+          <PlayerTurn playerTurn={playerTurn} />
         </header>
+        </div>
         <div id="game-board">
           <Board
             pointPositions={pointPositions}
+            playerTurn={playerTurn}
             turn={turn}
             squares={squares}
             onClick={handleClick}

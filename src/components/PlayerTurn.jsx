@@ -1,12 +1,15 @@
 import "../App.css";
 import React from "react";
+import classNames from "classnames";
 
-function PlayerTurn() {
+function PlayerTurn({playerTurn}) {
+  let playerOnClass = classNames(
+    [`player--${playerTurn}`]
+  )
   return (
     <div className="player-turn">
       <h2>Turno</h2>
-      <h3 id="player-1">Jugador 1</h3>
-      <h3 id="player-2">Jugador 2</h3>
+      <h2 className={playerOnClass}>Jugador {playerTurn}</h2>
     </div>
   );
 }
