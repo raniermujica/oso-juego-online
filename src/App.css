@@ -129,7 +129,7 @@
 .turnBtn {
   background-color: darkkhaki; 
   border: none;
-  color: white;
+  color:  #000D10;
   padding: 16px 32px;
   text-align: center;
   text-decoration: none;
@@ -144,19 +144,20 @@
 
 .turnBtn:hover {
   background-color: #C48F40;
-  color: white;
+  color:  #000D10;
 }
 
 #reset-btn {
     background-color: darkkhaki; 
     border: none;
-    color: white;
+    color:  #000D10;
     padding: 15px 32px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
     margin: 4px 2px;
+    margin-left: 4vh;
     cursor: pointer;
     border-radius: 8px;
 }
@@ -178,7 +179,7 @@
 }
 
 #left-screen {
- margin-top: -40vh;
+ margin-top: -30vh;
  margin-left: -7vh;
 }
 

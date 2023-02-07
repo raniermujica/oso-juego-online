@@ -1,9 +1,9 @@
 import "../App.css"
 import React from 'react';
 import classNames from "classnames";
-import Letter from "./Letter";
 
-function Square({value, onClick, turn, winner, playerPoint}) {
+
+function Square({value, onClick, turn}) {
 
 const handleClick = () => {
    (turn !== null && value === null) && onClick();
