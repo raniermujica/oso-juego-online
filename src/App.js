@@ -71,7 +71,7 @@ function App() {
   const resetGame = () => {
     setTurn("");
     setSquares(Array(81).fill(null));
-    setPointPositions([]);
+    setPointPositions(winningPositions);
     setPlayerTurn("1");
     setScore({
       1: 0,
