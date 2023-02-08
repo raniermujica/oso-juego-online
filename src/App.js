@@ -9,11 +9,14 @@ import PanelScore from "./components/PanelScore";
 import PlayerTurn from "./components/PlayerTurn";
 import osoLogo from "./assets/oso-logo.png";
 
+
 function App() {
   const [turn, setTurn] = useState("");
   const [playerTurn, setPlayerTurn] = useState("1");
   const [squares, setSquares] = useState(Array(81).fill(null));
+  const [winner, setWinner] = useState("");
   const [pointPositions, setPointPositions] = useState(winningPositions);
+  const [modal, setModal] = useState(false);
   const [score, setScore] = useState({
     1: 0,
     2: 0,
@@ -29,6 +32,7 @@ function App() {
 
   const handleClick = (square) => {
     let newSquares = [...squares];
+
     if (turn === "S" || turn === "O") {
       newSquares.splice(square, 1, turn);
     }
@@ -36,26 +40,34 @@ function App() {
     setSquares(newSquares);
     setTurn("");
 
+    if (!newSquares.includes(null)) {
+      setTimeout(endGame(playerTurn), 1000);
+      return;
+    }
+
     if (turn === "S" || turn === "O") {
       setPlayerTurn(playerTurn === "1" ? "2" : "1");
     }
   };
 
-
   const checkWinner = (newSquares) => {
-    let winningPoints = [...pointPositions]
+    let winningPoints = [...pointPositions];
     for (let i = 0; i < winningPoints.length; i++) {
       const [a, b, c] = winningPoints[i];
-      if ( 
-        (newSquares[a] &&
+      if (
+        newSquares[a] &&
         newSquares[a] !== newSquares[b] &&
         newSquares[b] !== null &&
         newSquares[b] === "S" &&
-        newSquares[a] === newSquares[c])
+        newSquares[a] === newSquares[c]
       ) {
         addPoint(playerTurn);
-        setPointPositions(winningPoints.filter(winningCombination => winningCombination !== winningPoints[i]))
-     } 
+        setPointPositions(
+          winningPoints.filter(
+            (winningCombination) => winningCombination !== winningPoints[i]
+          )
+        );
+      }
     }
   };
 
@@ -68,6 +80,19 @@ function App() {
     }
   };
 
+  const endGame = (playerTurn) => {
+    if (score[1] > score[2]) {
+      setWinner(`¡Player ${playerTurn} ha ganado!`);
+    }
+    if (score[1] < score[2]) {
+      setWinner(`¡Player ${playerTurn} ha ganado!`);
+    }
+    if (score[1] === score[2]) {
+      setWinner("Player 1 y Player 2 han empatado");
+    }
+    setModal(true)
+  };
+
   const resetGame = () => {
     setTurn("");
     setSquares(Array(81).fill(null));
@@ -77,11 +102,11 @@ function App() {
       1: 0,
       2: 0,
     });
+    setModal(false);
   };
 
   return (
     <div className="screen">
-      <br />
       <div className="container">
         <div id="left-screen">
           {<img src={osoLogo} alt="logo" width={170} />}
@@ -111,6 +136,17 @@ function App() {
       <section id="panel-score">
         <PanelScore score1={score[1]} score2={score[2]} />
       </section>
+      {modal === true ? 
+      <section className="winner">
+        <div className="text">
+          <h1>{winner}</h1>
+          <div className="btn-modal">
+          <ResetBtn resetGame={resetGame} />
+          </div>
+        </div>
+      </section>
+      :
+      <section></section>}
     </div>
   );
 }

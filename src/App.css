@@ -3,15 +3,20 @@
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
+  position: relative;
+  background-color: #000D10;
 }
 
 .screen {
   height: 100vh;
-  /* background-color: #002e23; */
+  width: 100vw;
   background-color: #000D10;
+  position: relative;
 }
 
 .board {
+  margin-top: 3vh;
+  margin-right: 2vw;
   display: flex;
   flex-direction: column;
 }
@@ -97,6 +102,7 @@
   align-content: center;
   align-items: center;
   margin-top: 5px;
+  margin-right: 1.8vw;
 }
 
 .score-board div {
@@ -160,6 +166,7 @@
     margin-left: 4vh;
     cursor: pointer;
     border-radius: 8px;
+  
 }
 
 #reset-btn:active {
@@ -172,26 +179,61 @@
 
 .player--1 {
   color: darkred;
+  text-shadow: darkkhaki 0em 0em 0.1em;
+  letter-spacing: media;
 }
 
 .player--2 {
   color: #063B1D;
+  text-shadow: darkkhaki 0em 0em 0.1em;
+  letter-spacing: media;
 }
 
 #left-screen {
- margin-top: -30vh;
+ margin-top: -40vh;
  margin-left: -7vh;
+ position: relative;
 }
 
 #left-screen header {
   padding-top: 5vh;
  }
 
-@keyframes point-animation-1 {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.titulo-modal {
+ color: #000D10;
 }
+
+.winner {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  display: grid;
+  place-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.winner .text {
+  background: #000D10;
+  height: 300px;
+  width: 320px;
+  border: 2px solid #eee;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.text h1 {
+  color:white;
+}
+
+.btn-modal {
+margin-left: -1vw;
+}
+
+
+
